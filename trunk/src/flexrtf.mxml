@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns:rtf="controls.rtf.*"
+	backgroundColor="#ffffff">
+	
+	<mx:Accordion width="100%" height="100%">
+		<mx:VBox label="RTF Editor" width="100%" height="100%">
+			<rtf:RtfEditor width="100%" height="100%" toolbar="{new DefaultToolbar()}">
+				<rtf:htmlText>
+					<![CDATA[
+						<div><b>Lorem ipsum</b> dolor sit amet, consectetur adipiscing elit. 
+						Aenean consequat orci tincidunt lorem. 
+						Praesent quis ante nec quam fringilla tincidunt. 
+						Vivamus pede mi, porta et, tristique ac, sodales eu, tortor. 
+						Nam quis neque vitae nulla semper cursus. 
+						Etiam metus magna, tristique eget, egestas non, viverra et, lectus. 
+						Aliquam imperdiet arcu nec magna. In non lectus in nisi vestibulum elementum. 
+						Pellentesque ipsum purus, interdum sit amet, hendrerit ac, iaculis id, augue. 
+						Sed aliquet, orci id dignissim tincidunt, justo turpis sollicitudin libero, ac rhoncus tortor tellus malesuada metus. 
+						Donec gravida scelerisque dui. Praesent vel erat. Curabitur viverra nisl varius nibh.</div>
+					]]>
+				</rtf:htmlText>
+			</rtf:RtfEditor>
+		</mx:VBox>
+		<mx:VBox label="Textarea" width="100%" height="100%">
+			<mx:TextArea width="100%" height="100%"/>
+		</mx:VBox>
+	</mx:Accordion>
+		
+	<mx:TabNavigator width="100%" height="100%">
+		<mx:VBox label="RTF Editor" width="100%" height="100%">
+			<rtf:RtfEditor width="60%" height="100%" toolbar="{new DefaultToolbar()}">
+				<rtf:htmlText>
+					<![CDATA[
+						<div><b>Lorem ipsum</b> dolor sit amet, consectetur adipiscing elit. 
+						Aenean consequat orci tincidunt lorem. 
+						Praesent quis ante nec quam fringilla tincidunt. 
+						Vivamus pede mi, porta et, tristique ac, sodales eu, tortor. 
+						Nam quis neque vitae nulla semper cursus. 
+						Etiam metus magna, tristique eget, egestas non, viverra et, lectus. 
+						Aliquam imperdiet arcu nec magna. In non lectus in nisi vestibulum elementum. 
+						Pellentesque ipsum purus, interdum sit amet, hendrerit ac, iaculis id, augue. 
+						Sed aliquet, orci id dignissim tincidunt, justo turpis sollicitudin libero, ac rhoncus tortor tellus malesuada metus. 
+						Donec gravida scelerisque dui. Praesent vel erat. Curabitur viverra nisl varius nibh.</div>
+					]]>
+				</rtf:htmlText>
+			</rtf:RtfEditor>
+		</mx:VBox>
+		<mx:VBox label="Textarea" width="100%" height="100%">
+			<mx:TextArea width="100%" height="100%"/>
+		</mx:VBox>
+		<mx:Accordion width="100%" height="100%" label="Accordion">
+		<mx:VBox label="RTF Editor" width="100%" height="100%">
+			<rtf:RtfEditor width="60%" height="100%" toolbar="{new DefaultToolbar()}">
+				<rtf:htmlText>
+					<![CDATA[
+						<div><b>Lorem ipsum</b> dolor sit amet, consectetur adipiscing elit. 
+						Aenean consequat orci tincidunt lorem. 
+						Praesent quis ante nec quam fringilla tincidunt. 
+						Vivamus pede mi, porta et, tristique ac, sodales eu, tortor. 
+						Nam quis neque vitae nulla semper cursus. 
+						Etiam metus magna, tristique eget, egestas non, viverra et, lectus. 
+						Aliquam imperdiet arcu nec magna. In non lectus in nisi vestibulum elementum. 
+						Pellentesque ipsum purus, interdum sit amet, hendrerit ac, iaculis id, augue. 
+						Sed aliquet, orci id dignissim tincidunt, justo turpis sollicitudin libero, ac rhoncus tortor tellus malesuada metus. 
+						Donec gravida scelerisque dui. Praesent vel erat. Curabitur viverra nisl varius nibh.</div>
+					]]>
+				</rtf:htmlText>
+			</rtf:RtfEditor>
+		</mx:VBox>
+		<mx:VBox label="Textarea" width="100%" height="100%">
+			<mx:TextArea width="100%" height="100%"/>
+		</mx:VBox>
+	</mx:Accordion>
+	</mx:TabNavigator>
+</mx:Application>

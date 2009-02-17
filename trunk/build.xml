@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="rtf.build" default="build">
+	<property file="build.properties" />
+		
+	<target name="build">
+		<mxmlc-compile file="flexrtf" />
+	</target>
+
+	<macrodef name="mxmlc-compile">
+		<attribute name="file" />
+		<sequential>
+			<exec executable="${flex.mxmlc.win32}" failonerror="true">
+				<arg line="-locale=${default.locale} " />
+				<arg line="-source-path=locale/${default.locale}" />
+				<arg line="-compiler.optimize" />
+				<arg line="-output '${basedir}/bin-debug/@{file}.swf'" />
+				<arg line="'${basedir}/src/@{file}.mxml'" />
+			</exec>
+		</sequential>
+	</macrodef>
+</project>

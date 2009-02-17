@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageManagerBase xmlns="controls.rtf.plugins.image.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" width="700" height="500"
+	showCloseButton="true" title="{resourceManager.getString('messages','rtf.imageManager')}" 
+	layout="vertical" xmlns:tree="controls.rtf.plugins.tree.*">
+	<mx:HDividedBox width="100%" paddingBottom="0" paddingLeft="5" paddingRight="5" paddingTop="5">
+		<mx:HBox width="100%">
+			<mx:Label text="{resourceManager.getString('messages','rtf.imageManager.uploadNewImage')}:" paddingTop="3"/>
+			<mx:TextInput id="txtFile" width="100%" editable="false"/>
+			<mx:Button id="btnBrowse" label="{resourceManager.getString('messages','rtf.imageManager.button.browse')}"/>
+			<mx:Button id="btnUpload" label="{resourceManager.getString('messages','rtf.imageManager.button.upload')}" 
+				enabled="{txtFile.text.length>0}"/>
+		</mx:HBox>
+	</mx:HDividedBox>
+	<mx:HDividedBox width="100%" height="100%" verticalScrollPolicy="off" paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="5">
+		<mx:HBox width="25%" height="100%" minWidth="175">
+			<mx:VBox width="100%" height="100%">
+				<mx:VBox width="100%">
+					<mx:Label text="{resourceManager.getString('messages','rtf.imageManager.library.select')}:"/>
+				</mx:VBox>
+				<mx:VBox width="100%" height="100%" borderStyle="solid">
+					<tree:FileTree width="100%" height="100%" id="fileTree" selectedIndex="0" borderStyle="none"/>
+				</mx:VBox>
+			</mx:VBox>
+		</mx:HBox>
+		<mx:HBox width="75%" height="100%" minWidth="175" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<mx:VBox width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+				<mx:VBox width="100%">
+					<mx:Label text="{resourceManager.getString('messages','rtf.imageManager.preview')}:"/>
+				</mx:VBox>
+				<mx:VBox width="100%" height="100%" borderStyle="solid" paddingTop="3" paddingLeft="3" paddingRight="3">
+					<mx:Image id="imgPreview" source="" scaleContent="true" width="100%" maxHeight="236" 
+						horizontalAlign="center" verticalAlign="middle"/>
+				</mx:VBox>
+			</mx:VBox>		
+		</mx:HBox>
+	</mx:HDividedBox>
+	<mx:HBox width="100%" height="110" verticalScrollPolicy="off" paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="0">
+		<mx:HBox height="100%" width="100%">
+			<mx:TabNavigator width="100%" height="100%" change="{imgPreview.dispatchEvent(new Event(Event.COMPLETE))}">
+				<mx:VBox width="100%" height="100%" label="{resourceManager.getString('messages','rtf.imageManager.tab1')}" paddingLeft="5" paddingRight="5">
+					<mx:HBox width="100%">
+						<mx:Label text="{resourceManager.getString('messages','rtf.common.alignment')}:" paddingTop="2"/>
+						<mx:ComboBox id="cmbAlign" width="100" cornerRadius="0">
+							<mx:dataProvider>
+								<mx:Array>
+									<mx:Object label="Left"/>
+									<mx:Object label="Top"/>
+									<mx:Object label="Right"/>
+									<mx:Object label="Bottom"/>
+									<mx:Object label="Middle"/>
+								</mx:Array>
+							</mx:dataProvider>
+						</mx:ComboBox>					
+						<mx:Label text="{resourceManager.getString('messages','rtf.common.width')} (px):"  paddingTop="2"/>
+						<mx:TextInput restrict="0-9" maxChars="3" id="txtWidth" width="75"/>
+						<mx:Label text="{resourceManager.getString('messages','rtf.common.height')} (px):" paddingTop="2"/>
+						<mx:TextInput restrict="0-9" maxChars="3" id="txtHeight" width="75"/>
+					</mx:HBox>
+					<mx:HBox width="100%">
+						<mx:Label text="{resourceManager.getString('messages','rtf.imageManager.alt')}:" paddingTop="2"/><mx:TextInput id="txtAlt" text="" width="100%"/>
+					</mx:HBox>
+				</mx:VBox>
+				<mx:VBox width="100%" height="100%" label="{resourceManager.getString('messages','rtf.imageManager.tab2')}" paddingLeft="5" paddingRight="5">
+					<mx:HBox width="100%">
+						<mx:Label text="{resourceManager.getString('messages','rtf.imageManager.actualWidth')} (px):"  paddingTop="2"/>
+						<mx:TextInput id="txtActualWidth" width="75" editable="false"/>
+						<mx:Label text="{resourceManager.getString('messages','rtf.imageManager.actualHeight')} (px):" paddingTop="2"/>
+						<mx:TextInput id="txtActualHeight" width="75" editable="false"/>
+						<mx:Label text="{resourceManager.getString('messages','rtf.imageManager.fileSize')}:" paddingTop="2"/>
+						<mx:TextInput id="txtFileSize" width="75" editable="false"/>
+					</mx:HBox>
+					<mx:HBox width="100%">
+						<mx:Label text="{resourceManager.getString('messages','rtf.imageManager.contentType')}:"  paddingTop="2"/><mx:TextInput id="txtContentType" text="" width="100%" editable="false"/>
+					</mx:HBox>
+				</mx:VBox>
+			</mx:TabNavigator>
+		</mx:HBox>
+	</mx:HBox>
+	<mx:ApplicationControlBar cornerRadius="0" width="100%" horizontalAlign="right" alpha="1.0">
+		<mx:Button id="btnInsert" label="{resourceManager.getString('messages','rtf.common.button.insert')}" enabled="false"/>
+		<mx:Button id="btnRemove" label="{resourceManager.getString('messages','rtf.imageManager.library.remove')}"/>
+	</mx:ApplicationControlBar>
+</ImageManagerBase>

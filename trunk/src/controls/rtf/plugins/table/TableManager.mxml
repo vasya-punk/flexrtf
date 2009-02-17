@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableManagerBase xmlns="controls.rtf.plugins.table.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="210"
+	showCloseButton="true" title="{resourceManager.getString('messages','rtf.tableManager')}" layout="vertical" paddingTop="10">
+	<mx:HBox>
+		<mx:VBox width="77" paddingLeft="10">
+			<mx:Label text="{resourceManager.getString('messages','rtf.tableManager.rows')}:" paddingTop="2"/>
+			<mx:Label text="{resourceManager.getString('messages','rtf.tableManager.columns')}:" paddingTop="5"/>
+		</mx:VBox>
+		<mx:VBox>
+			<mx:TextInput id="txtRows" width="40" restrict="0-9" maxChars="3" text="3" />
+			<mx:TextInput id="txtColumns" width="40" restrict="0-9" maxChars="3" text="3" />
+		</mx:VBox>
+		<mx:Spacer width="30"/>
+		<mx:VBox width="90" paddingLeft="10">
+			<mx:Label text="{resourceManager.getString('messages','rtf.common.width')}:" paddingTop="2"/>
+			<mx:Label text="{resourceManager.getString('messages','rtf.common.height')}:" paddingTop="5"/>
+		</mx:VBox>
+		<mx:VBox>
+			<mx:HBox horizontalGap="0" verticalGap="0">
+				<mx:TextInput id="txtWidth" width="40" restrict="0-9" maxChars="3" text="80" />
+				<mx:ComboBox id="cmbWidth" width="55" cornerRadius="0" fontWeight="normal">
+					<mx:dataProvider>
+						<mx:Array>
+							<mx:Object label="%" />
+							<mx:Object label="px" />
+						</mx:Array>
+					</mx:dataProvider>
+				</mx:ComboBox>
+			</mx:HBox>
+			<mx:HBox horizontalGap="0" verticalGap="0">
+				<mx:TextInput id="txtHeight" width="40" restrict="0-9" maxChars="3" />
+				<mx:Label text="px" paddingTop="2" paddingLeft="5"/>
+			</mx:HBox>
+		</mx:VBox>
+	</mx:HBox>
+	<mx:Spacer height="10"/>
+	<mx:HBox>
+		<mx:VBox width="77" paddingLeft="10">
+			<mx:Label text="{resourceManager.getString('messages','rtf.common.border')}:" paddingTop="2"/>
+			<mx:Label text="{resourceManager.getString('messages','rtf.common.alignment')}:" paddingTop="5"/>
+		</mx:VBox>
+		<mx:VBox>
+			<mx:TextInput id="txtBorder" width="40" restrict="0-9" maxChars="1" text="1" />
+			<mx:ComboBox id="cmbAlignment" width="78" cornerRadius="0" fontWeight="normal">
+				<mx:dataProvider>
+					<mx:Array>
+						<mx:Object label="Left" />
+						<mx:Object label="Center" />
+						<mx:Object label="Right" />
+					</mx:Array>
+				</mx:dataProvider>
+			</mx:ComboBox>
+		</mx:VBox>
+		<mx:VBox width="90" paddingLeft="10">
+			<mx:Label text="{resourceManager.getString('messages','rtf.tableManager.cellSpacing')}:" paddingTop="2"/>
+			<mx:Label text="{resourceManager.getString('messages','rtf.tableManager.cellPadding')}:" paddingTop="5"/>
+		</mx:VBox>
+		<mx:VBox>
+			<mx:TextInput id="txtSpacing" width="40" restrict="0-9" maxChars="2" text="1" />
+			<mx:TextInput id="txtPadding" width="40" restrict="0-9" maxChars="2" text="1" />
+		</mx:VBox>
+	</mx:HBox>
+	<mx:ApplicationControlBar cornerRadius="0" width="100%" horizontalAlign="right" alpha="1.0">
+		<mx:Button id="btnInsert" label="{resourceManager.getString('messages','rtf.common.button.insert')}"/>
+		<mx:Button id="btnCancel" label="{resourceManager.getString('messages','rtf.common.button.cancel')}"/>
+	</mx:ApplicationControlBar>
+</TableManagerBase>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinkManagerBase xmlns="controls.rtf.plugins.link.*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml"  width="350" height="200"
+	showCloseButton="true" title="{resourceManager.getString('messages','rtf.linkManager')}" layout="vertical" paddingTop="10">
+	<mx:HBox>
+		<mx:VBox width="75" paddingLeft="10">
+			<mx:Label text="{resourceManager.getString('messages','rtf.linkManager.url')}:" paddingTop="2"/>
+			<mx:Label text="{resourceManager.getString('messages','rtf.linkManager.target')}:" paddingTop="4"/>
+			<mx:Label text="{resourceManager.getString('messages','rtf.linkManager.name')}:" paddingTop="6"/>
+			<mx:Label text="{resourceManager.getString('messages','rtf.linkManager.title')}:" paddingTop="2"/>
+		</mx:VBox>
+		<mx:VBox>
+			<mx:HBox horizontalGap="0" verticalGap="0">
+				<mx:ComboBox id="cmdProtocol" width="70" cornerRadius="0" fontWeight="normal">
+					<mx:dataProvider>
+						<mx:Array>
+							<mx:Object label="http://" />
+							<mx:Object label="https://" />
+							<mx:Object label="ftp://" />
+							<mx:Object label="/" />
+							<mx:Object label="#" />
+						</mx:Array>
+					</mx:dataProvider>
+				</mx:ComboBox>
+				<mx:TextInput id="txtUrl" width="130"/>
+			</mx:HBox>
+			<mx:ComboBox id="cmdTarget" width="200" cornerRadius="0" fontWeight="normal">
+				<mx:dataProvider>
+					<mx:Array>
+						<mx:Object label="_self"/>
+						<mx:Object label="_blank"/>
+						<mx:Object label="_top"/>
+						<mx:Object label="_parent"/>
+					</mx:Array>
+				</mx:dataProvider>
+			</mx:ComboBox>
+			<mx:TextInput id="txtName" width="200"/>
+			<mx:TextInput id="txtTitle" width="200"/>
+		</mx:VBox>
+	</mx:HBox>
+	<mx:HBox paddingLeft="210">
+		<mx:Button label="{resourceManager.getString('messages','rtf.common.button.insert')}" id="btnInsert" width="75" />
+	</mx:HBox>
+</LinkManagerBase>
