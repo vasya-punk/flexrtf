@@ -275,7 +275,10 @@ package controls.rtf
 								 	 	"if(sel.createRange) {"+
 											"rng=sel.createRange();" +
 											"elm=sel.type=='Control'?rng(0):rng.parentElement();"+
-											"/*rng.commonParentElement*/"+
+											//"if(!elm){" +
+											//	 "elm=rng.commonParentElement();"+
+											//	 "alert(elm);"+
+											//"}"+
 										"}else if(sel.getRangeAt){" +
 											"rng=sel.getRangeAt(0);"+
 										 	"var cnt=rng.startContainer;"+
@@ -307,7 +310,14 @@ package controls.rtf
 												"window[id].activeElement=e.target;"+
 											"},false)"+
 										"}"+
-										"else doc.body.oncontextmenu=_oncontextmenu;"+
+										"else{" + 
+											"doc.body.oncontextmenu=_oncontextmenu;"+
+											"doc.body.attachEvent('onmousedown',function(e){" +
+												"var win,doc=window[id].getDocument();"+
+												"win=doc.parentWindow;"+
+												"window[id].activeElement=win.event&&win.event.srcElement;"+
+											"})"+
+										"}"+
 									"}else setTimeout(arguments.callee,100)"+
 								"})()"+ 
 							"},100);" +
