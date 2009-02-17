@@ -38,7 +38,7 @@
 			<mx:TextInput id="txtTitle" width="200"/>
 		</mx:VBox>
 	</mx:HBox>
-	<mx:HBox paddingLeft="210">
+	<mx:ApplicationControlBar cornerRadius="0" width="100%" horizontalAlign="right" alpha="1.0">
 		<mx:Button label="{resourceManager.getString('messages','rtf.common.button.insert')}" id="btnInsert" width="75" />
-	</mx:HBox>
+	</mx:ApplicationControlBar>
 </LinkManagerBase>
