@@ -18,6 +18,7 @@ package controls.rtf.plugins.link
 	public class LinkManagerBase extends BaseManager
 	{
 		public var btnInsert:Button;
+		public var btnCancel:Button;
 		public var cmdProtocol:ComboBox;
 		public var txtUrl:TextInput;
 		public var cmdTarget:ComboBox;
@@ -37,7 +38,17 @@ package controls.rtf.plugins.link
 			if(btnInsert)
 				btnInsert.addEventListener(MouseEvent.CLICK, onInsertClick);
 				
+			if(btnCancel)
+				btnCancel.addEventListener(MouseEvent.CLICK, onCancelClick);
+				
 			init();
+		}
+
+		private function onCancelClick(event:MouseEvent):void
+		{
+			dispatchEvent(new CloseEvent(CloseEvent.CLOSE));
+			if(opener)
+				opener.editor.iframe.setFocus();
 		}
 		
 		private function onInsertClick(event:MouseEvent):void
