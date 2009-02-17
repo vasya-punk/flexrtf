@@ -3,6 +3,7 @@ package controls.rtf.plugins.table
 	import flash.external.ExternalInterface;
 	
 	import org.w3.dom.html.HTMLTableElement;
+	import org.w3.dom.html.HTMLTableRowElement;
 	
 	public class TableHelper
 	{
@@ -15,19 +16,48 @@ package controls.rtf.plugins.table
 						"while(node.tagName!=tagName && node.tagName!='BODY'){" +
 							"node=node.offsetParent;"+ 
 						"}"+
+						
+						
 						"return (node && node.tagName==tagName)?node:null;"+
 					"}"+
 					"if(!window[id].getActiveTable)window[id].getActiveTable=function(){" + 
 						"return extractElement('TABLE')"+
 					"};"+
 					"if(!window[id].getActiveRow)window[id].getActiveRow=function(){" +
-						"return extractElement('TR')"+
+						"var td=extractElement('TD');"+
+						"return td && td.parentNode"+
 					"};"+
 					"if(!window[id].getActiveCell)window[id].getActiveCell=function(){" +
 						"return extractElement('TD')"+
 					"};"+
+					"if(!window[id].removeActiveRow)window[id].removeActiveRow=function(){" +
+						"var tr=window[id].getActiveRow();"+
+						"if(tr && tr.tagName=='TR')tr.parentNode.removeChild(tr)"+
+					"};"+
 				"}"+
 			"}", id);
+		}
+		
+		static public function removeActiveRow(id:String):void
+		{
+			ExternalInterface.call("window['"+id+"'].removeActiveRow");
+		}
+		
+		static public function getActiveRow(id:String):HTMLTableRowElement
+		{
+			return new HTMLTableRowElement(ExternalInterface.call("function(id){" +
+				"var tr,obj=null;" + 
+				"if(window[id]){" +
+					"tr=window[id].getActiveRow();" +
+					"if(tr && tr.tagName=='TR')" +
+						"obj={" +
+							"rowIndex:tr.rowIndex,"+
+							"nodeName:'TR'," +
+							"nodeType:1"+
+						"}"+
+				"}"+
+				"return obj;" + 
+			"}", id));
 		}
 		
 		static public function getActiveTable(id:String):HTMLTableElement

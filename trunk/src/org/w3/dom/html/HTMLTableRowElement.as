@@ -8,6 +8,7 @@ package org.w3.dom.html
 		public var align:String       = "";
 		public var bgColor:String     = "";
 		public var vAlign:String      = "";
+		public var rowIndex:int       = 0;
 		
 		public function HTMLTableRowElement(obj:*=null)
 		{

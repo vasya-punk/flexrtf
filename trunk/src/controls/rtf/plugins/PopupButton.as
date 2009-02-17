@@ -19,16 +19,20 @@ package controls.rtf.plugins
 		
 		override protected function onClick(event:MouseEvent):void
 		{
-			var toolbar:DefaultToolbar = null;
-			
-			if(owner is DefaultToolbar)
-				toolbar = owner as DefaultToolbar;
-			else if(parent is DefaultToolbar)
-				toolbar = parent as DefaultToolbar;
+			if(popupClass)
+			{
+				var toolbar:DefaultToolbar = null;
 				
-			var win:BaseManager = PopUpManager.createPopUp(parentApplication as DisplayObject, popupClass, true) as BaseManager;
-			win.opener = toolbar;
-			PopUpManager.centerPopUp(win);
+				if(owner is DefaultToolbar)
+					toolbar = owner as DefaultToolbar;
+				else if(parent is DefaultToolbar)
+					toolbar = parent as DefaultToolbar;
+				
+				
+				var win:BaseManager = PopUpManager.createPopUp(parentApplication as DisplayObject, popupClass, true) as BaseManager;
+				win.opener = toolbar;
+				PopUpManager.centerPopUp(win);
+			}
 		}
 	}
 }

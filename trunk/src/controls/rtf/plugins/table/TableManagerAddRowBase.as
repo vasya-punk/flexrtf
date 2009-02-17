@@ -6,14 +6,20 @@ package controls.rtf.plugins.table
 	import flash.external.ExternalInterface;
 	
 	import mx.controls.Button;
+	import mx.controls.RadioButton;
 	import mx.controls.RadioButtonGroup;
 	import mx.events.CloseEvent;
 	import mx.events.FlexEvent;
+	
+	import org.w3.dom.html.HTMLTableRowElement;
 
 	public class TableManagerAddRowBase extends BaseManager
 	{
 		public var btnInsert:Button;
 		public var btnCancel:Button;
+		
+		public var rdoAbove:RadioButton;
+		public var rdoBelow:RadioButton;
 		
 		[Bindable] protected var position:RadioButtonGroup = new RadioButtonGroup();
 		
@@ -63,20 +69,22 @@ package controls.rtf.plugins.table
 					"if(window[id]){" +
 						"window[id].insertTableRow=function(pos){" + 
 							"var tbl=window[id].getActiveTable();"+
+							"var j,last=tbl.rows[tbl.rows.length-1];"+
+							"var cols=(last&&last.cells)?last.cells.length:1;"+
 							"if(tbl){" + 
-								"if(pos==1){" +
-									""+ 
-								"}else if(pos==2){" +
-									""+ 
-								"}else if(pos==3){" +
-									""+ 
-								"}else if(pos==4){" +
-									""+ 
-								"}" + 
+								"var row=tbl.insertRow(pos);"+
+								"for(j=0;j<cols;j++)row.insertCell(j).innerHTML='&nbsp;';"+
 							"}"+
-						"}"+
+						"};"+
 					"}"+
 				"}", opener.editor.iframe.uid);
+				
+				var tr:HTMLTableRowElement = TableHelper.getActiveRow(opener.editor.iframe.uid);
+				if(tr && tr.nodeName=="TR")
+				{
+					rdoAbove.value = tr.rowIndex;
+					rdoBelow.value = tr.rowIndex + 1;
+				}
 			}
 		}
 	}
