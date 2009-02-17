@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<toolbars:DefaultToolbarBase xmlns:mx="http://www.adobe.com/2006/mxml" width="100%"
+	verticalGap="2" horizontalGap="0" cornerRadius="0" 
+	paddingTop="1" paddingBottom="1" paddingLeft="1" paddingRight="1"
+	xmlns:toolbars="controls.rtf.toolbars.*" xmlns:image="controls.rtf.plugins.image.*" 
+	xmlns:link="controls.rtf.plugins.link.*" xmlns:table="controls.rtf.plugins.table.*"
+	backgroundColor="#B2BFC6" backgroundAlpha="0.5"
+	>
+	<mx:Script>
+		<![CDATA[
+			import controls.rtf.RtfCommands;
+		]]>
+	</mx:Script>
+
+	<toolbars:ToolbarComboBox command="{RtfCommands.FONT_NAME}">
+		<toolbars:dataProvider>
+			<mx:Object label="Arial"/>
+			<mx:Object label="Verdana"/>
+			<mx:Object label="Tahoma"/>
+		</toolbars:dataProvider>
+	</toolbars:ToolbarComboBox>
+	<toolbars:ToolbarComboBox selectedIndex="2" command="{RtfCommands.FONT_SIZE}">
+		<toolbars:dataProvider>
+			<mx:Object label="1"/>
+			<mx:Object label="2"/>
+			<mx:Object label="3"/>
+			<mx:Object label="4"/>
+			<mx:Object label="5"/>
+			<mx:Object label="6"/>
+			<mx:Object label="7"/>
+		</toolbars:dataProvider>
+	</toolbars:ToolbarComboBox>
+	<mx:Spacer width="2"/>
+	<toolbars:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.undo')}" icon="{icons.UNDO}" command="{RtfCommands.UNDO}"/>
+	<toolbars:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.redo')}" icon="{icons.REDO}" command="{RtfCommands.REDO}"/>
+	<mx:Spacer width="2"/>
+	<toolbars:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.bold')}" icon="{icons.BOLD}" command="{RtfCommands.BOLD}"/>
+	<toolbars:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.italic')}" icon="{icons.ITALIC}" command="{RtfCommands.ITALIC}"/>
+	<toolbars:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.underline')}" icon="{icons.UNDERLINE}" command="{RtfCommands.UNDERLINE}"/>
+	<mx:Spacer width="2"/>
+	<toolbars:ToolbarColorPicker toolTip="{resourceManager.getString('messages','rtf.toolbar.backColor')}" selectedColor="16777215" command="{RtfCommands.BACK_COLOR}"/>
+	<toolbars:ToolbarColorPicker toolTip="{resourceManager.getString('messages','rtf.toolbar.foreColor')}" command="{RtfCommands.FORE_COLOR}"/>
+	<mx:Spacer width="2"/>
+	<image:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.insert.image')}" icon="{icons.INSERT_IMAGE}"/>
+	<mx:Spacer width="2"/>
+	<link:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.insert.link')}" icon="{icons.CREATE_LINK}"/>
+	<toolbars:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.remove.link')}" icon="{icons.UNLINK}" command="{RtfCommands.UNLINK}" enabled="false"/>
+	<mx:Spacer width="2"/>
+	<toolbars:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.insert.orderedList')}" icon="{icons.INSERT_ORDERED_LIST}" command="{RtfCommands.INSERT_ORDERED_LIST}"/>
+	<toolbars:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.insert.unorderedList')}" icon="{icons.INSERT_UNORDERED_LIST}" command="{RtfCommands.INSERT_ORDERED_UNLIST}"/>
+	<mx:Spacer width="2"/>
+	<toolbars:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.left')}" icon="{icons.JUSTIFY_LEFT}" command="{RtfCommands.JUSTIFY_LEFT}"/>
+	<toolbars:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.center')}" icon="{icons.JUSTIFY_CENTER}" command="{RtfCommands.JUSTIFY_CENTER}"/>
+	<toolbars:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.right')}" icon="{icons.JUSTIFY_RIGHT}" command="{RtfCommands.JUSTIFY_RIGHT}"/>
+	<mx:Spacer width="2"/>
+	<toolbars:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.outdent')}" icon="{icons.OUTDENT}" command="{RtfCommands.OUTDENT}"/>
+	<toolbars:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.indent')}" icon="{icons.INDENT}" command="{RtfCommands.INDENT}"/>
+	<mx:Spacer width="2"/>
+	<table:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.insert.table')}" icon="{icons.TABLE}" />
+	<table:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.insert.table.row')}" icon="{icons.TABLE_ADD_ROW}" enabled="false" />
+</toolbars:DefaultToolbarBase>
