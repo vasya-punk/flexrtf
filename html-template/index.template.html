@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>${title}</title>
 <style>
+html,body{width:100%;height:100%}
 body{margin:0px;overflow:hidden}
 #${application}{position:relative}
 </style>
@@ -14,10 +15,11 @@ window.IMAGE_MANAGER_URL = (location.protocol=="file:") ? "http://localhost/flex
 </script>
 </head>
 <body scroll="no">
-  	<object type="application/x-shockwave-flash" id="${application}" data="${swf}.swf" wmode="transparent" width="99%" height="${height}">
+  	<object type="application/x-shockwave-flash" id="${application}" allowScriptAccess="sameDomain" data="${swf}.swf" wmode="transparent" width="100%" height="100%">
 		<!--[if IE]><param name="movie" value="${swf}.swf" /><![endif]-->
 		<param name="quality" value="high"/>
 		<param name="wmode" value="transparent"/>
+		<param name="allowScriptAccess" value="sameDomain"/>
 	</object>
 </body>
 </html>

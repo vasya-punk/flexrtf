@@ -59,4 +59,5 @@
 	<table:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.insert.table')}" icon="{icons.TABLE}" />
 	<table:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.insert.table.row')}" icon="{icons.TABLE_ADD_ROW}" enabled="false" />
 	<table:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.remove.table.row')}" icon="{icons.TABLE_REMOVE_ROW}" enabled="false" />
+	<table:ToolbarButton toolTip="{resourceManager.getString('messages','rtf.toolbar.merge.table.cells')}" icon="{icons.TABLE_MERGE_CELLS}" enabled="false" />
 </toolbars:DefaultToolbarBase>

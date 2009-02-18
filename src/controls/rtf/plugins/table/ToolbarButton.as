@@ -26,6 +26,8 @@ package controls.rtf.plugins.table
 				popupClass = TableManagerAddRow;
 			else if(_icon == toolbar.icons.TABLE_REMOVE_ROW)
 				popupClass = null;
+			else if(_icon == toolbar.icons.TABLE_MERGE_CELLS)
+				popupClass = TableMergeManager;
 			else
 				popupClass = TableManager;
 		}
@@ -47,7 +49,7 @@ package controls.rtf.plugins.table
 			var toolbar:DefaultToolbar = owner as DefaultToolbar;
 			var _icon:Class = getStyle("icon");
 			
-			if(_icon == toolbar.icons.TABLE_ADD_ROW || _icon == toolbar.icons.TABLE_REMOVE_ROW)
+			if(_icon == toolbar.icons.TABLE_ADD_ROW || _icon == toolbar.icons.TABLE_REMOVE_ROW || _icon == toolbar.icons.TABLE_MERGE_CELLS)
 			{
 				enabled = (node.nodeName == "TABLE" || node.nodeName == "TBODY" || node.nodeName == "TR" || node.nodeName == "TD");
 			}
