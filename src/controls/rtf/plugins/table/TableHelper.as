@@ -16,8 +16,6 @@ package controls.rtf.plugins.table
 						"while(node.tagName!=tagName && node.tagName!='BODY'){" +
 							"node=node.offsetParent;"+ 
 						"}"+
-						
-						
 						"return (node && node.tagName==tagName)?node:null;"+
 					"}"+
 					"if(!window[id].getActiveTable)window[id].getActiveTable=function(){" + 
@@ -31,8 +29,14 @@ package controls.rtf.plugins.table
 						"return extractElement('TD')"+
 					"};"+
 					"if(!window[id].removeActiveRow)window[id].removeActiveRow=function(){" +
+						"var tbl=window[id].getActiveTable();"+
 						"var tr=window[id].getActiveRow();"+
-						"if(tr && tr.tagName=='TR')tr.parentNode.removeChild(tr)"+
+						"if(tr  && tr.tagName=='TR')tr.parentNode.removeChild(tr);"+
+						"if(tbl && tbl.rows.length==0){" + 
+							"if(tbl.parentNode.childNodes.length==1&&tbl.parentNode.tagName!='BODY')"+
+								"tbl.parentNode.parentNode.removeChild(tbl.parentNode);"+
+							"else tbl.parentNode.removeChild(tbl);"+
+						"}"+
 					"};"+
 				"}"+
 			"}", id);

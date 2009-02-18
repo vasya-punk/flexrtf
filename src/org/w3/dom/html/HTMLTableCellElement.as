@@ -14,6 +14,8 @@ package org.w3.dom.html
 		public var colSpan:int        = 0;
 		public var rowSpan:int        = 0;
 		
+		public var cellIndex:int      = 0;
+		
 		public function HTMLTableCellElement(obj:*=null)
 		{
 			super(obj);

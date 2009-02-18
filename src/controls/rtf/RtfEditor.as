@@ -10,7 +10,6 @@ package controls.rtf
 	import mx.containers.Accordion;
 	import mx.containers.Panel;
 	import mx.containers.ViewStack;
-	import mx.controls.Alert;
 	import mx.core.Application;
 	import mx.core.Container;
 	import mx.core.UIComponent;
