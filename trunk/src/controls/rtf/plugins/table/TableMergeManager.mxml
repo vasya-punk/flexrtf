@@ -16,7 +16,7 @@
 		</mx:Form>
 	</mx:HBox>
 	<mx:ApplicationControlBar cornerRadius="0" width="100%" horizontalAlign="right" alpha="1.0">
-		<mx:Button id="btnMerge" label="{resourceManager.getString('messages','rtf.common.button.insert')}"/>
+		<mx:Button id="btnMerge" label="{resourceManager.getString('messages','rtf.tableManager.button.merge')}"/>
 		<mx:Button id="btnCancel" label="{resourceManager.getString('messages','rtf.common.button.cancel')}"/>
 	</mx:ApplicationControlBar>
 </TableMergeManagerBase>
