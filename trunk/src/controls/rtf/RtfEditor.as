@@ -10,11 +10,11 @@ package controls.rtf
 	import mx.containers.Accordion;
 	import mx.containers.Panel;
 	import mx.containers.ViewStack;
+	import mx.controls.Alert;
 	import mx.core.Application;
 	import mx.core.Container;
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
-	import mx.rpc.xml.SimpleXMLEncoder;
 
 	[ResourceBundle("messages")]
 
@@ -161,13 +161,12 @@ package controls.rtf
 		
 		public function hideIframes():void
 		{
+			var id:String = parentApplication.id || parentApplication.className;
+
 			ExternalInterface.call("function(app){" +
 				"var i,f=document.getElementsByTagName('IFRAME');"+
 				"app=document.getElementById(app);"+
-				"if(app){" + 
-					"app.style.zIndex=100;"+
-					//"if(window.VBArray)app.style.position='relative';"+
-				"}"+
+				"if(app)app.style.zIndex=100;"+
 				"for(i=0;i<f.length;i++){" +
 					"if(f[i].getAttribute('type')=='rtf'){"+
 						"if(window.XULElement){"+
@@ -179,7 +178,7 @@ package controls.rtf
 					"}"+
 				"}"+ 
 				"if(window.VBArray)window.focus();"+
-			"}", Application.application.id);
+			"}", id);
 		}
 		
 		public function restoreIframes():void

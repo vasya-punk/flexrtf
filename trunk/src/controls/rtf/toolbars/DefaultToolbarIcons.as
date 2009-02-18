@@ -56,5 +56,8 @@ package controls.rtf.toolbars
 		
 		[Embed(source="/controls/rtf/images/rtf-tabledelrow.gif")]
 		[Bindable] public var TABLE_REMOVE_ROW:Class;
+		
+		[Embed(source="/controls/rtf/images/rtf-tablemergecell.gif")]
+		[Bindable] public var TABLE_MERGE_CELLS:Class;
 	}
 }
