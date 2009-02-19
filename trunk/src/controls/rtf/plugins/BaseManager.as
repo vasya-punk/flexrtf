@@ -14,17 +14,19 @@ package controls.rtf.plugins
 		public function BaseManager()
 		{
 			super();
-			//setStyle("backgroundAlpha",1);
+
 			addEventListener(CloseEvent.CLOSE, onClose);
-			addEventListener(FlexEvent.CREATION_COMPLETE, function(event:FlexEvent):void{
-				opener.editor.hideIframes();
+			addEventListener(FlexEvent.CREATION_COMPLETE, function(event:FlexEvent):void
+			{
+				removeEventListener(FlexEvent.CREATION_COMPLETE, arguments.callee);
+				if(opener) opener.editor.hideIframes();
 			});
 		}
 		
 		private function onClose(event:CloseEvent):void
 		{
 			PopUpManager.removePopUp(this);
-			opener.editor.restoreIframes();
+			if(opener) opener.editor.restoreIframes();
 		}
 	}
 }
