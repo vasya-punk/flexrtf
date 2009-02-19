@@ -20,18 +20,18 @@ package controls.rtf.plugins.table
 		public function TableMergeManagerBase()
 		{
 			super();
-			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-		}
-		
-		private function onCreationComplete(event:FlexEvent):void
-		{
-			if(btnMerge)
-				btnMerge.addEventListener(MouseEvent.CLICK, onMergeClick);
+			addEventListener(FlexEvent.CREATION_COMPLETE, function(event:FlexEvent):void
+			{
+				removeEventListener(FlexEvent.CREATION_COMPLETE, arguments.callee);
 				
-			if(btnCancel)
-				btnCancel.addEventListener(MouseEvent.CLICK, onCancelClick);
+				if(btnMerge)
+					btnMerge.addEventListener(MouseEvent.CLICK, onMergeClick);
 				
-			init();
+				if(btnCancel)
+					btnCancel.addEventListener(MouseEvent.CLICK, onCancelClick);
+					
+				init();
+			});
 		}
 		
 		private function onCancelClick(event:MouseEvent):void
@@ -47,7 +47,6 @@ package controls.rtf.plugins.table
 			if(opener)
 			{
 				opener.editor.iframe.setFocus();
-
 				opener.editor.restoreSelection();
 				opener.editor.execCommand("mergeTableCells", false, merge.selectedValue);
 			}
@@ -61,33 +60,36 @@ package controls.rtf.plugins.table
 				
 				ExternalInterface.call("function(id){" +
 					"if(window[id]){" +
-						"window[id].mergeTableCells=function(pos){" +
-							"var target,td=window[id].getActiveCell();"+
-							"if(td){"+
-								"if(pos==1){" + //Merge right
-									"target=td.parentNode.cells[td.cellIndex+1];"+
-									"if(target){" +
-										"td.colSpan = td.colSpan ? td.colSpan+1 : 2;"+
-										"td.innerHTML+=target.innerHTML;"+
-										"target.parentNode.removeChild(target);"+ 
+						"window[id].mergeTableCells=function(i){" +
+							//i = direction
+							//t = target
+							//s = source(TD)
+							"var t,s=window[id].getActiveCell();"+
+							"if(s){"+
+								"if(i==1){" + //Merge right
+									"t=s.parentNode.cells[s.cellIndex+1];"+
+									"if(t){" +
+										"s.colSpan=s.colSpan?s.colSpan+1:2;"+
+										"s.innerHTML+=t.innerHTML;"+
+										"t.parentNode.removeChild(t)"+ 
 									"}"+ 
-								"}else if(pos==2){" + //Merge left
-									"target=td.parentNode.cells[td.cellIndex-1];"+
-									"if(target){" +
-										"target.colSpan = target.colSpan ? target.colSpan+1 : 2;"+
-										"target.innerHTML+=td.innerHTML;"+
-										"td.parentNode.removeChild(td);"+ 
+								"}else if(i==2){" + //Merge left
+									"t=s.parentNode.cells[s.cellIndex-1];"+
+									"if(t){" +
+										"t.colSpan=t.colSpan?t.colSpan+1:2;"+
+										"t.innerHTML+=s.innerHTML;"+
+										"s.parentNode.removeChild(s)"+ 
 									"}"+ 
-								"}else if(pos==3){" + //Merge down
+								"}else if(i==3){" + //Merge down
 									"var tbl=window[id].getActiveTable();"+
 									"if(tbl){" +
-										"var row=tbl.rows[td.parentNode.rowIndex+1];"+
-										"if(row){" + 
-											"target=row.cells[td.cellIndex];" + 
-											"if(target){" +
-												"td.rowSpan = td.rowSpan ? td.rowSpan+1 : 2;"+
-												"td.innerHTML+='<br>'+target.innerHTML;"+
-												"target.parentNode.removeChild(target);"+ 
+										"var r=tbl.rows[s.parentNode.rowIndex+1];"+
+										"if(r){" + 
+											"t=r.cells[s.cellIndex];" + 
+											"if(t){" +
+												"s.rowSpan=s.rowSpan?s.rowSpan+1:2;"+
+												"s.innerHTML+='<br>'+t.innerHTML;"+
+												"t.parentNode.removeChild(t)"+ 
 											"}"+
 										"}"+ 
 									"}"+ 

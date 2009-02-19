@@ -6,6 +6,7 @@ package controls.rtf.plugins.image
 	
 	import flash.display.Bitmap;
 	import flash.events.Event;
+	import flash.events.IOErrorEvent;
 	import flash.events.MouseEvent;
 	import flash.events.ProgressEvent;
 	import flash.external.ExternalInterface;
@@ -18,6 +19,7 @@ package controls.rtf.plugins.image
 	import mx.controls.Button;
 	import mx.controls.ComboBox;
 	import mx.controls.Image;
+	import mx.controls.ProgressBar;
 	import mx.controls.TextInput;
 	import mx.events.CloseEvent;
 	import mx.events.FlexEvent;
@@ -57,6 +59,7 @@ package controls.rtf.plugins.image
 		public var txtContentType:TextInput;
 		
 		private var file:FileReference = new FileReference();
+		public var progressBar:ProgressBar = new ProgressBar();
 		
 		public function ImageManagerBase()
 		{
@@ -222,13 +225,22 @@ package controls.rtf.plugins.image
 		
 		private function onUploadClickHandler(event:MouseEvent):void
 		{
+			imgPreview.visible = false;
+			progressBar.visible = true;
+			
+			var path:String = fileTree.selectedItem ? fileTree.selectedItem.@path : "";
 			try
 			{
-                file.upload(new URLRequest(uploadUrl + fileTree.selectedItem.@path), uploadFieldName);
+                file.upload(new URLRequest(uploadUrl + path), uploadFieldName);
+                file.addEventListener(IOErrorEvent.IO_ERROR, function(e:IOErrorEvent):void
+                {
+                	file.removeEventListener(IOErrorEvent.IO_ERROR, arguments.callee);
+                	Alert.show("upload url: " + uploadUrl + path +"\nError: " + e.text);
+                });
             }
             catch (err:Error)
             {
-                //message.text = "ERROR: zero-byte file";
+                Alert.show(err.message, err.name);
             }
 		}
 		
@@ -244,8 +256,14 @@ package controls.rtf.plugins.image
 			if(!isBranch(parentNode)) parentNode = parentNode.parent();
 			parentNode.appendChild(node);
 			
+			//Alert.show("onFileComplete: " + node.@url);
+			
+			//(fileTree.dataProvider as XMLListCollection).refresh();
+			expandItem(node);
 			fileTree.selectedItem = node;
 			imgPreview.source = node.@url;
+			
+			
 			btnInsert.enabled = true;
 			
 			Alert.show(
@@ -253,11 +271,13 @@ package controls.rtf.plugins.image
 				resourceManager.getString('messages','rtf.imageManager.upload.title'));
 			
 			txtFile.text = "";
+			progressBar.visible = false;
+			imgPreview.visible = true;
 		}
 		
 		private function onFileProgress(event:Event):void
 		{
-			//progressBar.visible = true;
+			progressBar.visible = true;
 		}
 		
 		private function onFileSelect(event:Event):void
